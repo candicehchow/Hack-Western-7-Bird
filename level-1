@@ -1,0 +1,60 @@
+import tkinter as tk
+
+from tkinter import *
+
+from tkinter import messagebox
+
+finStatements = ["Balance Sheet", "Income Statement", "Statement of Cash Flows", "Asset", "Liability"]
+definitions = ["A balance sheet is a financial statement that reports a company's assets, liabilities and shareholders' equity at a specific point in time, and provides a basis for computing rates of return and evaluating its capital structure.", "An income statement is one of the three (along with balance sheet and statement of cash flows) major financial statements that reports a company's financial performance over a specific accounting period.", "A cash flow statement is a financial statement that provides aggregate data regarding all cash inflows a company receives from its ongoing operations and external investment sources.", "An asset is a resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit.","A liability is something a person or company owes, usually a sum of money."]
+variables = {}
+
+top = Tk()
+top.geometry("100x100")
+
+def BS():
+   messagebox.showinfo(finStatements[0],definitions[0])
+
+def IS():
+   messagebox.showinfo(finStatements[1],definitions[1])
+
+def SCF():
+   messagebox.showinfo(finStatements[2],definitions[2])
+
+def AS():
+   messagebox.showinfo(finStatements[3],definitions[3])
+
+def LB():
+   messagebox.showinfo(finStatements[4],definitions[4])
+
+
+B1 = Button(top, text = finStatements[0], command = BS)
+B2 = Button(top, text = finStatements[1], command = IS)
+B3 = Button(top, text = finStatements[2], command = SCF)
+B4 = Button(top, text = finStatements[3], command = AS)
+B5 = Button(top, text = finStatements[4], command = LB)
+
+B1.place(x = 35,y = 60)
+B2.place(x = 35, y = 90)
+B3.place(x = 35, y = 120)
+B4.place(x = 35, y = 150)
+B5.place(x = 35, y = 180)
+
+counter = 0
+def counter_label(label):
+  def count():
+    global counter
+    counter += 1
+    label.config(text=str(counter))
+    label.after(1000, count)
+  count()
+
+
+top.title("Counting Seconds")
+label = tk.Label(top, fg="green")
+label.pack()
+counter_label(label)
+button = tk.Button(top, text='Stop', width=25, command=top.destroy)
+button.pack()
+
+
+top.mainloop()
