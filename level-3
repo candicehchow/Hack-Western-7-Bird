@@ -1,0 +1,66 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def formatInput(textLine):
+    textLine = textLine.lower().strip()
+    wordList = textLine.split()
+    textLine = " ".join(wordList)
+    return textLine
+
+def show_entry_fields():
+    corrects = []
+    newDef = [e1.get(), e2.get(), e3.get(), e4.get(), e5.get()]
+    for i in range(len(finStatements)):
+        if finStatements[i] != formatInput(newDef[i]):
+            corrects.append(i)
+    if len(corrects) == 0:
+        messagebox.showinfo("Congrats", "You've completed level 3! Please press the 'QUIT' button and proceed to the next level.")
+    else:
+        print(corrects)
+        for i in range(len(corrects)):
+            messagebox.showinfo("Sorry", "Prompt " + str((corrects[i])+1) + " is incorrect")
+
+finStatements = ["balance sheet", "income statement", "statement of cash flows", "asset", "liability"]
+definitions = ["A(n) ______ is a financial statement that reports a company's assets, liabilities and shareholders' equity at a specific point in time, and provides a basis for computing rates of return and evaluating its capital structure.", "A(n) _____ is one of the three (along with balance sheet and statement of cash flows) major financial statements that reports a company's financial performance over a specific accounting period.", "A(n) _____ is a financial statement that provides aggregate data regarding all cash inflows a company receives from its ongoing operations and external investment sources.", "A(n) _____ is a resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit.","A(n) _____ is something a person or company owes, usually a sum of money."]
+
+master = tk.Tk()
+tk.Label(master,
+         text=definitions[0]).grid(row=0)
+tk.Label(master,
+         text=definitions[1]).grid(row=1)
+tk.Label(master,
+         text=definitions[2]).grid(row=2)
+tk.Label(master,
+         text=definitions[3]).grid(row=3)
+tk.Label(master,
+         text=definitions[4]).grid(row=4)
+
+e1 = tk.Entry(master)
+e2 = tk.Entry(master)
+e3 = tk.Entry(master)
+e4 = tk.Entry(master)
+e5 = tk.Entry(master)
+
+
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+e3.grid(row=2, column=1)
+e4.grid(row=3, column=1)
+e5.grid(row=4, column=1)
+
+
+
+tk.Button(master,
+          text='Quit',
+          command=master.quit).grid(row=6,
+                                    column=0,
+                                    sticky=tk.W,
+                                    pady=4)
+tk.Button(master,
+          text='Show', command=show_entry_fields).grid(row=6,
+                                                       column=1,
+                                                       sticky=tk.W,
+                                                       pady=4)
+
+
+tk.mainloop()
